@@ -7,6 +7,7 @@ from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
 from models.state import State
 from models.city import City
+from models.user import User
 
 
 class DBStorage():
@@ -34,7 +35,7 @@ class DBStorage():
         if cls:
             query = self.__session.query(cls)
         else:
-            query = self.__session.query(State, City)
+            query = self.__session.query(State, City, User)
 
         for obj in query:
             key = "{}.{}".format(obj.__class__.__name__, obj.id)
