@@ -4,18 +4,15 @@
 import unittest
 from unittest.mock import patch
 from io import StringIO
-from models.engine.file_storage import FileStorage, DBStorage
+from console import HBNBCommand
+from models.engine.file_storage import FileStorage
 import subprocess
-from os import getenv
 
 
 class TestConsole(unittest.TestCase):
     def setUp(self):
         self.console = HBNBCommand()
-        if getenv("HBNB_TYPE_STORAGE") == "db":
-            self.storage = DBStorage()
-        else:
-            self.storage = FileStorage()
+        self.storage = FileStorage()
 
     def test_create(self):
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
