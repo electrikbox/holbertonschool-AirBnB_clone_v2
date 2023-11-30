@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Unittest for Amenity """
+""" Test for Console """
 
 import unittest
 from unittest.mock import patch
@@ -84,7 +84,7 @@ class TestConsole(unittest.TestCase):
             "State",
             "Amenity",
             "Place"
-            ]
+        ]
         for index in range(len(models_list)):
             with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
                 self.console.onecmd(f"create {models_list[index]}")
@@ -100,7 +100,7 @@ class TestConsole(unittest.TestCase):
             "State",
             "Amenity",
             "Place"
-            ]
+        ]
         for index in range(len(models_list)):
             with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
                 self.console.onecmd(f"create {models_list[index]}")
@@ -116,7 +116,7 @@ class TestConsole(unittest.TestCase):
             "State",
             "Amenity",
             "Place"
-            ]
+        ]
         for index in range(len(models_list)):
             with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
                 self.console.onecmd(f"create {models_list[index]}")
@@ -134,7 +134,7 @@ class TestConsole(unittest.TestCase):
             "State",
             "Amenity",
             "Place"
-            ]
+        ]
         for index in range(len(models_list)):
             with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
                 self.console.onecmd(f"create {models_list[index]}")
@@ -151,7 +151,7 @@ class TestConsole(unittest.TestCase):
             "State",
             "Amenity",
             "Place"
-            ]
+        ]
         for index in range(len(models_list)):
             with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
                 self.console.onecmd(f"create {models_list[index]}")
@@ -169,7 +169,7 @@ class TestConsole(unittest.TestCase):
             "State",
             "Amenity",
             "Place"
-            ]
+        ]
         for index in range(len(models_list)):
             with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
                 self.console.onecmd(f"create {models_list[index]}")
