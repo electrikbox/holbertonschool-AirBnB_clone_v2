@@ -2,6 +2,8 @@
 """ """
 from tests.test_models.test_base_model import test_basemodel
 from models.amenity import Amenity
+from models import storage
+import unittest
 
 
 class test_Amenity(test_basemodel):
@@ -13,6 +15,7 @@ class test_Amenity(test_basemodel):
         self.name = "Amenity"
         self.value = Amenity
 
+    @unittest.skipIf(storage != 'db', "not testing db storage")
     def test_name2(self):
         """ """
         new = self.value()

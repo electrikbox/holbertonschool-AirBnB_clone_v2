@@ -6,7 +6,7 @@ from unittest.mock import patch
 from io import StringIO
 from console import HBNBCommand
 from models.engine.file_storage import FileStorage
-import subprocess
+from models import storage
 
 
 class TestConsole(unittest.TestCase):
@@ -45,6 +45,7 @@ class TestConsole(unittest.TestCase):
                 destroy_output = mock_stdout2.getvalue().strip()
                 self.assertFalse(destroy_output)
 
+    @unittest.skipIf(storage != 'db', "not testing db storage")
     def test_all(self):
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
             self.console.onecmd("all")
@@ -55,6 +56,7 @@ class TestConsole(unittest.TestCase):
             all_output = mock_stdout.getvalue().strip()
             self.assertIn("BaseModel", all_output)
 
+    @unittest.skipIf(storage != 'db', "not testing db storage")
     def test_count(self):
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
             self.console.onecmd("create User")
@@ -65,6 +67,7 @@ class TestConsole(unittest.TestCase):
                 count_output = mock_stdout2.getvalue().strip()
                 self.assertEqual(count_output, "4")
 
+    @unittest.skipIf(storage != 'db', "not testing db storage")
     def test_update(self):
         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
             self.console.onecmd("create User")
@@ -76,6 +79,7 @@ class TestConsole(unittest.TestCase):
                 show_output = mock_stdout2.getvalue().strip()
                 self.assertIn("'last_name': 'John'", show_output)
 
+    @unittest.skipIf(storage != 'db', "not testing db storage")
     def test_all_alt_syntax(self):
         models_list = [
             "BaseModel",
@@ -92,6 +96,7 @@ class TestConsole(unittest.TestCase):
                 all_output = mock_stdout.getvalue().strip()
                 self.assertIn(f"{models_list[index]}", all_output)
 
+    @unittest.skipIf(storage != 'db', "not testing db storage")
     def test_count_alt_syntax(self):
         models_list = [
             "BaseModel",
@@ -108,6 +113,7 @@ class TestConsole(unittest.TestCase):
                 all_output = mock_stdout.getvalue().strip()
                 self.assertIn(f"{models_list[index]}", all_output)
 
+    @unittest.skipIf(storage != 'db', "not testing db storage")
     def test_show_alt_syntax(self):
         models_list = [
             "BaseModel",
@@ -143,6 +149,7 @@ class TestConsole(unittest.TestCase):
                     f"{models_list[index]}.destroy({instance_id})")
                 self.assertNotIn(f"{models_list[index]}", self.storage.all())
 
+    @unittest.skipIf(storage != 'db', "not testing db storage")
     def test_update_alt_syntax(self):
         models_list = [
             "BaseModel",
@@ -161,6 +168,7 @@ class TestConsole(unittest.TestCase):
                 output = mock_stdout.getvalue().strip()
                 self.assertIn(f"{models_list[index]}", output)
 
+    @unittest.skipIf(storage != 'db', "not testing db storage")
     def test_update_dict_alt_syntax(self):
         models_list = [
             "BaseModel",

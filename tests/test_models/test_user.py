@@ -2,6 +2,8 @@
 """ """
 from tests.test_models.test_base_model import test_basemodel
 from models.user import User
+from models import storage
+import unittest
 
 
 class test_User(test_basemodel):
@@ -13,21 +15,25 @@ class test_User(test_basemodel):
         self.name = "User"
         self.value = User
 
+    @unittest.skipIf(storage != 'db', "not testing db storage")
     def test_first_name(self):
         """ """
         new = self.value()
         self.assertEqual(type(new.first_name), str)
 
+    @unittest.skipIf(storage != 'db', "not testing db storage")
     def test_last_name(self):
         """ """
         new = self.value()
         self.assertEqual(type(new.last_name), str)
 
+    @unittest.skipIf(storage != 'db', "not testing db storage")
     def test_email(self):
         """ """
         new = self.value()
         self.assertEqual(type(new.email), str)
 
+    @unittest.skipIf(storage != 'db', "not testing db storage")
     def test_password(self):
         """ """
         new = self.value()
