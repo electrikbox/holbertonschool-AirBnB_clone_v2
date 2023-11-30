@@ -1,34 +1,21 @@
 #!/usr/bin/python3
-""" """
-from tests.test_models.test_base_model import test_basemodel
+""" Unittest for User """
+
+import unittest
+from models.base_model import BaseModel
 from models.user import User
 
 
-class test_User(test_basemodel):
-    """ """
+class testUser(unittest.TestCase):
+    """ Test class for User """
 
-    def __init__(self, *args, **kwargs):
-        """ """
-        super().__init__(*args, **kwargs)
-        self.name = "User"
-        self.value = User
+    def test_class(self):
+        """ Validate attributes type """
+        with self.subTest(msg='Inheritance'):
+            self.assertTrue(issubclass(User, BaseModel))
 
-    def test_first_name(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.first_name), str)
-
-    def test_last_name(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.last_name), str)
-
-    def test_email(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.email), str)
-
-    def test_password(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.password), str)
+        with self.subTest(msg='Attributes'):
+            self.assertIsInstance(User.email, str)
+            self.assertIsInstance(User.password, str)
+            self.assertIsInstance(User.first_name, str)
+            self.assertIsInstance(User.last_name, str)

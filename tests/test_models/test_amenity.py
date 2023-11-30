@@ -1,19 +1,18 @@
 #!/usr/bin/python3
-""" """
-from tests.test_models.test_base_model import test_basemodel
+""" Unittest for Amenity """
+
+import unittest
+from models.base_model import BaseModel
 from models.amenity import Amenity
 
 
-class test_Amenity(test_basemodel):
-    """ """
+class testAmenity(unittest.TestCase):
+    """ Test class for Amenity """
 
-    def __init__(self, *args, **kwargs):
-        """ """
-        super().__init__(*args, **kwargs)
-        self.name = "Amenity"
-        self.value = Amenity
+    def test_class(self):
+        """ Validate attributes type """
+        with self.subTest(msg='Inheritance'):
+            self.assertTrue(issubclass(Amenity, BaseModel))
 
-    def test_name2(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.name), str)
+        with self.subTest(msg='Attributes'):
+            self.assertIsInstance(Amenity.name, str)

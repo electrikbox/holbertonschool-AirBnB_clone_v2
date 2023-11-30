@@ -1,24 +1,19 @@
 #!/usr/bin/python3
-""" """
-from tests.test_models.test_base_model import test_basemodel
+""" Unittest for City """
+
+import unittest
+from models.base_model import BaseModel
 from models.city import City
 
 
-class test_City(test_basemodel):
-    """ """
+class testCity(unittest.TestCase):
+    """ Test class for City """
 
-    def __init__(self, *args, **kwargs):
-        """ """
-        super().__init__(*args, **kwargs)
-        self.name = "City"
-        self.value = City
+    def test_class(self):
+        """ Validate attributes type """
+        with self.subTest(msg='Inheritance'):
+            self.assertTrue(issubclass(City, BaseModel))
 
-    def test_state_id(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.state_id), str)
-
-    def test_name(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.name), str)
+        with self.subTest(msg='Attributes'):
+            self.assertIsInstance(City.name, str)
+            self.assertIsInstance(City.state_id, str)
