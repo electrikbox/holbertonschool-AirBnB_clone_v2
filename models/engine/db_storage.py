@@ -5,11 +5,7 @@ from os import getenv
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
-from models.state import State
-from models.city import City
-from models.user import User
-from models.place import Place
-from models.review import Review
+from models import *
 
 
 class DBStorage():
@@ -37,7 +33,7 @@ class DBStorage():
         if cls:
             query = self.__session.query(cls)
         else:
-            query = self.__session.query(State, City, User, Place, Review)
+            query = self.__session.query(State, City, User, Place, Review, Amenity)
 
         for obj in query:
             key = "{}.{}".format(obj.__class__.__name__, obj.id)
