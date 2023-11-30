@@ -1,19 +1,18 @@
 #!/usr/bin/python3
-""" """
-from tests.test_models.test_base_model import test_basemodel
+""" Unittest for State """
+
+import unittest
+from models.base_model import BaseModel
 from models.state import State
 
 
-class test_state(test_basemodel):
-    """ """
+class testState(unittest.TestCase):
+    """ Test class for User """
 
-    def __init__(self, *args, **kwargs):
-        """ """
-        super().__init__(*args, **kwargs)
-        self.name = "State"
-        self.value = State
+    def test_class(self):
+        """ Validate attributes type """
+        with self.subTest(msg='Inheritance'):
+            self.assertTrue(issubclass(State, BaseModel))
 
-    def test_name3(self):
-        """ """
-        new = self.value()
-        self.assertEqual(type(new.name), str)
+        with self.subTest(msg='Attributes'):
+            self.assertIsInstance(State.name, str)
