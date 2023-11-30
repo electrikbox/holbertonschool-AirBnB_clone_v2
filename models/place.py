@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+"""This module defines a class Place"""
+
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String, Integer, ForeignKey, Float, Table
 from sqlalchemy.orm import relationship
