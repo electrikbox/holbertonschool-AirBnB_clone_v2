@@ -55,76 +55,76 @@ class TestConsole(unittest.TestCase):
             all_output = mock_stdout.getvalue().strip()
             self.assertIn("BaseModel", all_output)
 
-    # def test_count(self):
-    #     with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-    #         self.console.onecmd("create User")
-    #         self.console.onecmd("create User")
-    #         self.console.onecmd("create User")
-    #         with patch('sys.stdout', new_callable=StringIO) as mock_stdout2:
-    #             self.console.onecmd("count User")
-    #             count_output = mock_stdout2.getvalue().strip()
-    #             self.assertEqual(count_output, "4")
+    def test_count(self):
+        with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
+            self.console.onecmd("create User")
+            self.console.onecmd("create User")
+            self.console.onecmd("create User")
+            with patch('sys.stdout', new_callable=StringIO) as mock_stdout2:
+                self.console.onecmd("count User")
+                count_output = mock_stdout2.getvalue().strip()
+                self.assertEqual(count_output, "4")
 
-    # def test_update(self):
-    #     with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-    #         self.console.onecmd("create User")
-    #         output = mock_stdout.getvalue().strip()
-    #         self.assertTrue(output)
-    #         with patch('sys.stdout', new_callable=StringIO) as mock_stdout2:
-    #             self.console.onecmd(f"update User {output} last_name 'John'")
-    #             self.console.onecmd(f"show User {output}")
-    #             show_output = mock_stdout2.getvalue().strip()
-    #             self.assertIn("'last_name': 'John'", show_output)
+    def test_update(self):
+        with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
+            self.console.onecmd("create User")
+            output = mock_stdout.getvalue().strip()
+            self.assertTrue(output)
+            with patch('sys.stdout', new_callable=StringIO) as mock_stdout2:
+                self.console.onecmd(f"update User {output} last_name 'John'")
+                self.console.onecmd(f"show User {output}")
+                show_output = mock_stdout2.getvalue().strip()
+                self.assertIn("'last_name': 'John'", show_output)
 
-    # def test_all_alt_syntax(self):
-    #     models_list = [
-    #         "BaseModel",
-    #         "Review",
-    #         "User",
-    #         "State",
-    #         "Amenity",
-    #         "Place"
-    #     ]
-    #     for index in range(len(models_list)):
-    #         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-    #             self.console.onecmd(f"create {models_list[index]}")
-    #             self.console.onecmd(f"{models_list[index]}.all()")
-    #             all_output = mock_stdout.getvalue().strip()
-    #             self.assertIn(f"{models_list[index]}", all_output)
+    def test_all_alt_syntax(self):
+        models_list = [
+            "BaseModel",
+            "Review",
+            "User",
+            "State",
+            "Amenity",
+            "Place"
+        ]
+        for index in range(len(models_list)):
+            with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
+                self.console.onecmd(f"create {models_list[index]}")
+                self.console.onecmd(f"{models_list[index]}.all()")
+                all_output = mock_stdout.getvalue().strip()
+                self.assertIn(f"{models_list[index]}", all_output)
 
-    # def test_count_alt_syntax(self):
-    #     models_list = [
-    #         "BaseModel",
-    #         "Review",
-    #         "User",
-    #         "State",
-    #         "Amenity",
-    #         "Place"
-    #     ]
-    #     for index in range(len(models_list)):
-    #         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-    #             self.console.onecmd(f"create {models_list[index]}")
-    #             self.console.onecmd(f"{models_list[index]}.count()")
-    #             all_output = mock_stdout.getvalue().strip()
-    #             self.assertIn(f"{models_list[index]}", all_output)
+    def test_count_alt_syntax(self):
+        models_list = [
+            "BaseModel",
+            "Review",
+            "User",
+            "State",
+            "Amenity",
+            "Place"
+        ]
+        for index in range(len(models_list)):
+            with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
+                self.console.onecmd(f"create {models_list[index]}")
+                self.console.onecmd(f"{models_list[index]}.count()")
+                all_output = mock_stdout.getvalue().strip()
+                self.assertIn(f"{models_list[index]}", all_output)
 
-    # def test_show_alt_syntax(self):
-    #     models_list = [
-    #         "BaseModel",
-    #         "Review",
-    #         "User",
-    #         "State",
-    #         "Amenity",
-    #         "Place"
-    #     ]
-    #     for index in range(len(models_list)):
-    #         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-    #             self.console.onecmd(f"create {models_list[index]}")
-    #             instance_id = mock_stdout.getvalue().strip()
-    #             self.console.onecmd(
-    #                 f"{models_list[index]}.show({instance_id})")
-    #             output = mock_stdout.getvalue().strip()
-    #             self.assertIn(f"{models_list[index]}", output)
+    def test_show_alt_syntax(self):
+        models_list = [
+            "BaseModel",
+            "Review",
+            "User",
+            "State",
+            "Amenity",
+            "Place"
+        ]
+        for index in range(len(models_list)):
+            with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
+                self.console.onecmd(f"create {models_list[index]}")
+                instance_id = mock_stdout.getvalue().strip()
+                self.console.onecmd(
+                    f"{models_list[index]}.show({instance_id})")
+                output = mock_stdout.getvalue().strip()
+                self.assertIn(f"{models_list[index]}", output)
 
     def test_destroy_alt_syntax(self):
         models_list = [
@@ -143,42 +143,42 @@ class TestConsole(unittest.TestCase):
                     f"{models_list[index]}.destroy({instance_id})")
                 self.assertNotIn(f"{models_list[index]}", self.storage.all())
 
-    # def test_update_alt_syntax(self):
-    #     models_list = [
-    #         "BaseModel",
-    #         "Review",
-    #         "User",
-    #         "State",
-    #         "Amenity",
-    #         "Place"
-    #     ]
-    #     for index in range(len(models_list)):
-    #         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-    #             self.console.onecmd(f"create {models_list[index]}")
-    #             instance_id = mock_stdout.getvalue().strip()
-    #             self.console.onecmd(
-    #                 f"{models_list[index]}.update({instance_id}, str, test")
-    #             output = mock_stdout.getvalue().strip()
-    #             self.assertIn(f"{models_list[index]}", output)
+    def test_update_alt_syntax(self):
+        models_list = [
+            "BaseModel",
+            "Review",
+            "User",
+            "State",
+            "Amenity",
+            "Place"
+        ]
+        for index in range(len(models_list)):
+            with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
+                self.console.onecmd(f"create {models_list[index]}")
+                instance_id = mock_stdout.getvalue().strip()
+                self.console.onecmd(
+                    f"{models_list[index]}.update({instance_id}, str, test")
+                output = mock_stdout.getvalue().strip()
+                self.assertIn(f"{models_list[index]}", output)
 
-    # def test_update_dict_alt_syntax(self):
-    #     models_list = [
-    #         "BaseModel",
-    #         "Review",
-    #         "User",
-    #         "State",
-    #         "Amenity",
-    #         "Place"
-    #     ]
-    #     for index in range(len(models_list)):
-    #         with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
-    #             self.console.onecmd(f"create {models_list[index]}")
-    #             instance_id = mock_stdout.getvalue().strip()
-    #             test_dict = "{\"str\": \"test\"}"
-    #             self.console.onecmd(
-    #                 f"{models_list[index]}.update({instance_id}, {test_dict}")
-    #             output = mock_stdout.getvalue().strip()
-    #             self.assertIn(f"{models_list[index]}", output)
+    def test_update_dict_alt_syntax(self):
+        models_list = [
+            "BaseModel",
+            "Review",
+            "User",
+            "State",
+            "Amenity",
+            "Place"
+        ]
+        for index in range(len(models_list)):
+            with patch('sys.stdout', new_callable=StringIO) as mock_stdout:
+                self.console.onecmd(f"create {models_list[index]}")
+                instance_id = mock_stdout.getvalue().strip()
+                test_dict = "{\"str\": \"test\"}"
+                self.console.onecmd(
+                    f"{models_list[index]}.update({instance_id}, {test_dict}")
+                output = mock_stdout.getvalue().strip()
+                self.assertIn(f"{models_list[index]}", output)
 
 
 if __name__ == '__main__':
