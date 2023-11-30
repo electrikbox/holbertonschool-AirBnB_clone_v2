@@ -1,12 +1,10 @@
-#!/usr/bin/python3
-""" Place Module for HBNB project """
 from models.base_model import BaseModel, Base
-from sqlalchemy import Column, String, Integer, ForeignKey, Float
+from sqlalchemy import Column, String, Integer, ForeignKey, Float, Table
 from sqlalchemy.orm import relationship
 from os import getenv
 from models.review import Review
+from models.amenity import Amenity
 import models
-
 
 class Place(BaseModel, Base):
     """ A place to stay """
@@ -23,6 +21,15 @@ class Place(BaseModel, Base):
         price_by_night = Column(Integer, nullable=False, default=0)
         latitude = Column(Float, nullable=True)
         longitude = Column(Float, nullable=True)
+
+        # Define the Many-To-Many relationship with Amenity
+        amenities = relationship(
+            'Amenity',
+            secondary=Amenity.place_amenities,
+            back_populates='places',
+            viewonly=False
+        )
+
     else:
         city_id = ""
         user_id = ""

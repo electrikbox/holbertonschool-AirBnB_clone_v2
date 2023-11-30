@@ -4,7 +4,6 @@
 import unittest
 from unittest.mock import patch
 from io import StringIO
-from console import HBNBCommand
 from models.engine.file_storage import FileStorage, DBStorage
 import subprocess
 from os import getenv
