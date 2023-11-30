@@ -18,3 +18,9 @@ class User(BaseModel, Base):
         backref="user",
         cascade="all, delete-orphan"
     )
+    places = relationship(
+        "Place",
+        backref="user",
+        cascade="all,delete",
+        passive_deletes=True
+    )
