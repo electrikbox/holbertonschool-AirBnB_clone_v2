@@ -10,20 +10,19 @@ from os import getenv
 
 
 class State(BaseModel, Base):
-    """ Defines State class """
-    __tablename__ = "states"
-
-    name = Column(String(128), nullable=False)
+    """ State class """
 
     if getenv("HBNB_TYPE_STORAGE") == "db":
+        __tablename__ = "states"
         name = Column(String(128), nullable=False)
         cities = relationship('City', cascade="all, delete", backref="state")
     else:
         name = ""
+
     if getenv("HBNB_TYPE_STORAGE") != "db":
         @property
         def cities(self):
-            """ Returns list of cities associated with state """
+            """Returns the list of cities associated with this state."""
             cities_list = []
             for city in models.storage.all(City).values():
                 if self.id == city.state_id:
