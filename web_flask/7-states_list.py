@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 @app.route("/states_list", strict_slashes=False)
 def states_list():
-    """Display a list of all State objects and their linked City objects"""
+    """Display a list of all State objects"""
     states = storage.all(State)
     return render_template('7-states_list.html', states=states)
 
