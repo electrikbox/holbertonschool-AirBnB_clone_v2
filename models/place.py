@@ -9,6 +9,7 @@ from models.review import Review
 from models.amenity import Amenity
 import models
 
+
 if getenv('HBNB_TYPE_STORAGE') == 'db':
     place_amenity = Table(
                 'place_amenity',
@@ -28,6 +29,7 @@ if getenv('HBNB_TYPE_STORAGE') == 'db':
                     nullable=False
                 )
             )
+
 
 class Place(BaseModel, Base):
     """ A place to stay """
@@ -77,7 +79,7 @@ class Place(BaseModel, Base):
                 if self.id == review.place_id:
                     reviews_list.append(review)
             return reviews_list
-        
+
         @property
         def amenities(self):
             """Get/set linked Amenities."""
@@ -89,5 +91,5 @@ class Place(BaseModel, Base):
 
         @amenities.setter
         def amenities(self, value):
-            if type(value) == Amenity:
+            if type(value) is Amenity:
                 self.amenity_ids.append(value.id)

@@ -10,7 +10,7 @@ class Amenity(BaseModel, Base):
     """ The Amenity class """
     if getenv("HBNB_TYPE_STORAGE") == "db":
         __tablename__ = "amenities"
-        name = Column(String(128), nullable=False)        
+        name = Column(String(128), nullable=False)
         place_amenities = relationship(
             'Place',
             secondary="place_amenity",
